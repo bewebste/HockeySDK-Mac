@@ -57,7 +57,6 @@ const CGFloat kDetailsHeight = 285;
 - (instancetype)initWithManager:(BITCrashManager *)crashManager crashReportFile:(NSString *)crashReportFile crashReport:(NSString *)crashReport logContent:(NSString *)logContent companyName:(NSString *)companyName applicationName:(NSString *)applicationName askUserDetails:(BOOL)askUserDetails {
   
   self = [super initWithWindowNibName: @"BITCrashReportUI"];
-  
   if ( self != nil) {
     _mainAppMenu = [NSApp mainMenu];
     _crashManager = crashManager;
@@ -72,31 +71,39 @@ const CGFloat kDetailsHeight = 285;
     [self setShowDetails: NO];
     [self setShowUserDetails:askUserDetails];
     
-    NSRect windowFrame = [[self window] frame];
-    windowFrame.size = NSMakeSize(windowFrame.size.width, windowFrame.size.height - kDetailsHeight);
-    windowFrame.origin.y -= kDetailsHeight;
-    
-    if (!askUserDetails) {
-      windowFrame.size = NSMakeSize(windowFrame.size.width, windowFrame.size.height - kUserHeight);
-      windowFrame.origin.y -= kUserHeight;
-      
-      NSRect frame = commentsTextFieldTitle.frame;
-      frame.origin.y += kUserHeight;
-      commentsTextFieldTitle.frame = frame;
+    //In some cases, the crash reporter will have trouble loading the nib file for the crash
+    //report window, leading to the crash reporter itself crashing down the line, creating
+    //a vicious cycle. We double check this and return nil if the window doesn't load for some
+    //reason
+    if ([self window] != nil) {
+      NSRect windowFrame = [[self window] frame];
+      windowFrame.size = NSMakeSize(windowFrame.size.width, windowFrame.size.height - kDetailsHeight);
+      windowFrame.origin.y -= kDetailsHeight;
 
-      frame = disclosureButton.frame;
-      frame.origin.y += kUserHeight;
-      disclosureButton.frame = frame;
+      if (!askUserDetails) {
+        windowFrame.size = NSMakeSize(windowFrame.size.width, windowFrame.size.height - kUserHeight);
+        windowFrame.origin.y -= kUserHeight;
 
-      frame = descriptionTextField.frame;
-      frame.origin.y += kUserHeight;
-      descriptionTextField.frame = frame;
+        NSRect frame = commentsTextFieldTitle.frame;
+        frame.origin.y += kUserHeight;
+        commentsTextFieldTitle.frame = frame;
+
+        frame = disclosureButton.frame;
+        frame.origin.y += kUserHeight;
+        disclosureButton.frame = frame;
+
+        frame = descriptionTextField.frame;
+        frame.origin.y += kUserHeight;
+        descriptionTextField.frame = frame;
+      }
+
+      [[self window] setFrame: windowFrame
+                  display: YES
+                  animate: NO];
     }
-    
-    [[self window] setFrame: windowFrame
-                    display: YES
-                    animate: NO];
-    
+    else {
+      self = nil;
+    }
   }
   return self;  
 }

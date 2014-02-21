@@ -560,11 +560,15 @@ NSString *const kHockeyErrorDomain = @"HockeyErrorDomain";
                                                        companyName:_companyName ?: @"the developer"
                                                    applicationName:[self applicationName]
                                                     askUserDetails:_askUserDetails];
-        
-        [_crashReportUI setUserName:[self userNameForCrashReport]];
-        [_crashReportUI setUserEmail:[self userEmailForCrashReport]];
-        
-        [_crashReportUI askCrashReportDetails];
+
+		  if (_crashReportUI) {
+            [_crashReportUI setUserName:[self userNameForCrashReport]];
+            [_crashReportUI setUserEmail:[self userEmailForCrashReport]];
+            [_crashReportUI askCrashReportDetails];
+          }
+		  else {
+            returnToApp = YES;
+		  }
       } else {
         [self sendReportWithCrash:crashFile crashDescription:nil];
       }
