@@ -601,6 +601,7 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
                                                                                osBuild:report.systemInfo.operatingSystemBuild
                                                                             appVersion:report.applicationInfo.applicationMarketingVersion
                                                                               appBuild:report.applicationInfo.applicationVersion
+                                                                  appProcessIdentifier:report.processInfo.processID
                                     ];
         
         // fetch and store the meta data after setting _lastSessionCrashDetails, so the property can be used in the protocol methods
@@ -736,6 +737,7 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
           if (_crashReportUI.nibDidLoadSuccessfully) {
             [_crashReportUI askCrashReportDetails];
             [_crashReportUI showWindow:self];
+            [_crashReportUI.window setLevel:NSNormalWindowLevel+1];
             [_crashReportUI.window makeKeyAndOrderFront:self];
           } else {
             [self approveLatestCrashReport];

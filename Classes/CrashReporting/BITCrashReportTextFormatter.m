@@ -271,7 +271,8 @@ static const char *findSEL (const char *imageName, NSString *imageUUID, uint64_t
             if (codeType != nil)
                 break;
         }
-        
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
         /* If we were unable to determine the code type, fall back on the legacy architecture value. */
         if (codeType == nil) {
             switch (report.systemInfo.architecture) {
@@ -298,6 +299,7 @@ static const char *findSEL (const char *imageName, NSString *imageUUID, uint64_t
                     break;
             }
         }
+#pragma GCC diagnostic pop
     }
     
     {
@@ -375,7 +377,18 @@ static const char *findSEL (const char *imageName, NSString *imageUUID, uint64_t
         if (report.systemInfo.operatingSystemBuild != nil)
             osBuild = report.systemInfo.operatingSystemBuild;
         
-        [text appendFormat: @"Date/Time:       %@\n", report.systemInfo.timestamp];
+        NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        NSDateFormatter *rfc3339Formatter = [[NSDateFormatter alloc] init];
+        [rfc3339Formatter setLocale:enUSPOSIXLocale];
+        [rfc3339Formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+        [rfc3339Formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+        
+        [text appendFormat: @"Date/Time:       %@\n", [rfc3339Formatter stringFromDate:report.systemInfo.timestamp]];
+        if ([report.processInfo respondsToSelector:@selector(processStartTime)]) {
+            if (report.systemInfo.timestamp && report.processInfo.processStartTime) {
+                [text appendFormat: @"Launch Time:     %@\n", [rfc3339Formatter stringFromDate:report.processInfo.processStartTime]];
+            }
+        }
         [text appendFormat: @"OS Version:      %@ %@ (%@)\n", osName, report.systemInfo.operatingSystemVersion, osBuild];
         [text appendFormat: @"Report Version:  104\n"];
     }
