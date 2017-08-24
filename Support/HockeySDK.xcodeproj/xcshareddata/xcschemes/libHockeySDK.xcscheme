@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1E7FB95C17D3F36B00B7E10D"
-               BuildableName = "HockeySDK Documentation"
-               BlueprintName = "HockeySDK Documentation"
+               BlueprintIdentifier = "69EAA6761E41054A00DB7393"
+               BuildableName = "libHockeySDK.a"
+               BlueprintName = "libHockeySDK"
                ReferencedContainer = "container:HockeySDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1E7FB95C17D3F36B00B7E10D"
-            BuildableName = "HockeySDK Documentation"
-            BlueprintName = "HockeySDK Documentation"
+            BlueprintIdentifier = "69EAA6761E41054A00DB7393"
+            BuildableName = "libHockeySDK.a"
+            BlueprintName = "libHockeySDK"
             ReferencedContainer = "container:HockeySDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -62,6 +62,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "69EAA6761E41054A00DB7393"
+            BuildableName = "libHockeySDK.a"
+            BlueprintName = "libHockeySDK"
+            ReferencedContainer = "container:HockeySDK.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
