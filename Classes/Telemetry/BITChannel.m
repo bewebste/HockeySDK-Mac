@@ -216,6 +216,7 @@ void bit_resetSafeJsonStream(char **string) {
 - (void)invalidateTimer {
   if ([self timerIsRunning]) {
     dispatch_source_cancel(self.timerSource);
+    dispatch_release(self.timerSource);
     self.timerSource = nil;
   }
 }
@@ -235,13 +236,14 @@ void bit_resetSafeJsonStream(char **string) {
   __weak typeof(self) weakSelf = self;
   dispatch_source_set_event_handler(self.timerSource, ^{
     typeof(self) strongSelf = weakSelf;
-    
-    if (strongSelf->_dataItemCount > 0) {
-      [strongSelf persistDataItemQueue];
-    } else {
-      strongSelf.channelBlocked = NO;
+    if (strongSelf) {
+        if (strongSelf->_dataItemCount > 0) {
+            [strongSelf persistDataItemQueue];
+        } else {
+            strongSelf.channelBlocked = NO;
+        }
+        [strongSelf invalidateTimer];
     }
-    [strongSelf invalidateTimer];
   });
   dispatch_resume(self.timerSource);
 }

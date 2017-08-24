@@ -1,7 +1,29 @@
+## 4.1.4
+- [FIX] Fix UI glitches in Feedback UI
+
+## 4.1.3
+
+- [IMPROVEMENT] Downgrading to PLCrashReporter 1.2.1 as the upgrade to 1.3 in the last release lead to lowered qualitfy of crash reports for an edge case.
+- [IMPROVEMENT] Additional target to create libHockeySDK.a thanks to Gabriel/MacGritsch.
+- [BUGFIX] Fix a UI glitch where the loading indicator would spin indefinitely when displaying feedback
+- [BUGFIX] Fix a glitch where the crashes UI wasn't always visible when starting the app. Thanks a lot to Tamas Nagy for this.
+
+## 4.1.2
+
+- [IMPROVEMENT] Update to latest PLCrashReporter build (PLCrashReporter 1.3).
+- [BUGFIX] Add check for `nil` in BITChannel.
+
+## 4.1.1
+
+- [IMPROVEMENT] Add process id to BITCrashDetails.
+- [IMPROVEMENT] Add app launch timestamp to crash report.
+- [BUGFIX] Fix leak in BITChannel.
+- [BUGFIX] Add safequards to MetricsManager to fix potential crash in BITChannel.
+
 ## 4.1.0
 
-[NEW] Add ability to track custom events
-[NEW] Additional API to track an event with properties and measurements.
+- [NEW] Add ability to track custom events
+- [NEW] Additional API to track an event with properties and measurements.
 
 ## 4.1.0-beta.4
 
