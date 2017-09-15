@@ -1,3 +1,10 @@
+## 5.0.0-beta.1
+
+The version of drops support for OS X 10.7 and 10.8.
+
+- [IMPROVEMENT] Documentation is now generated using Jazzy.
+- [BUGFIX/IMPROVEMENT] Under some circumstances, the logic to exclude HockeyApp folders from a backup would block an app at launch. The logic is now executed asynchronously.
+
 ## 4.1.4
 - [FIX] Fix UI glitches in Feedback UI
 
@@ -45,7 +52,7 @@ Add a bugfix from version 4.0.2:
 This SDK release explicitly includes the Application Support directory into backups. If you want to opt-out of this fix and keep the Application Directory's backup flag untouched, add the following line above the SDK setup code:
 
 - Objective-C:
-```objectivec
+```objc
 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"BITExcludeApplicationSupportFromBackup"];
 ```
 
@@ -87,7 +94,7 @@ NSUserDefaults.standardUserDefaults().setBool(true, forKey: "BITExcludeApplicati
 This SDK release explicitly includes the Application Support directory into backups. If you want to opt-out of this fix and keep the Application Directory's backup flag untouched, add the following line above the SDK setup code:
 
   	**Objective-C:**
-   ```objectivec
+   ```objc
    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"kBITExcludeApplicationSupportFromBackup"];
    ```
     
@@ -369,3 +376,4 @@ This SDK release explicitly includes the Application Support directory into back
   - Supports 32 and 64 bit Intel X86 architecture
   - Uses brand new PLCrashReporter version instead of crash logs from Libary directories
 - Fixed sending crash reports to the HockeyApp servers
+
