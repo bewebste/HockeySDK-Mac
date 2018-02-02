@@ -1,9 +1,10 @@
-[![Build Status](https://travis-ci.org/bitstadium/HockeySDK-iOS.svg?branch=develop)](https://travis-ci.org/bitstadium/HockeySDK-Mac)
-[![Version](https://img.shields.io/cocoapods/v/HockeySDK-Mac.svg)](http://cocoadocs.org/docsets/HockeySDK-Mac)
+[![Build Status](https://www.bitrise.io/app/0b9891c6c8a2c030/status.svg?token=CoxYoBkW4sTCga7LG5xe4w&branch=develop)](https://www.bitrise.io/app/0b9891c6c8a2c030)[![Version](https://img.shields.io/cocoapods/v/HockeySDK-Mac.svg)](http://cocoadocs.org/docsets/HockeySDK-Mac)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Slack Status](https://slack.hockeyapp.net/badge.svg)](https://slack.hockeyapp.net)
 
-## Version 4.1.4
+## Version 5.1.0
 
-- [Changelog](http://www.hockeyapp.net/help/sdk/mac/4.1.4/docs/docs/Changelog.html)
+- [Changelog](http://www.hockeyapp.net/help/sdk/mac/5.1.0/docs/docs/Changelog.html)
 
 **NOTE:** With the release of HockeySDK 4.0.0-alpha.1 a bug was introduced which lead to the exclusion of the Application Support folder from iCloud and iTunes backups.
 
@@ -533,7 +534,7 @@ BITHockeyManager.shared().start()
 <a id="documentation"></a>
 ## 4. Documentation
 
-Our documentation can be found on [HockeyApp](http://hockeyapp.net/help/sdk/mac/4.1.3/index.html).
+Our documentation can be found on [HockeyApp](https://www.hockeyapp.net/help/sdk/mac/5.1.0/index.html).
 
 <a id="troubleshooting"></a>
 ## 5.Troubleshooting
@@ -546,7 +547,7 @@ Make sure that the apps build setting has `LD_RUNPATH_SEARCH_PATHS` set to `@exe
 
 Make sure there is no `All Exceptions` breakpoint active or limit it to `Objective-C` only and exclude `C++`.
 
-3. Feature are not working as expected
+3. Features are not working as expected
 
 Enable debug output to the console to see additional information from the SDK initializing the modules,  sending and receiving network requests and more by adding the following code before calling `startManager`:
 
@@ -559,7 +560,7 @@ We're looking forward to your contributions via pull requests.
 
 **Development environment**
 
-* Mac running the latest version of OS X
+* A Mac running the latest version of macOS
 * Get the latest Xcode from the Mac App Store
 * [AppleDoc](https://github.com/tomaz/appledoc) 
 * [Cocoapods](https://cocoapods.org/)
